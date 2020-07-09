@@ -1,0 +1,174 @@
+* Overview and Design Decisions
+** Electrical
+   There are two circuit boards: The Spaceduino and the containment unit
+   controller. The Spaceduino is located at the top of the nanolab and has the
+   following main features:
+   + An Arduino-compatible microcontroller.
+   + A USB Type B port.
+   + A boost controller to generate higher voltages.
+   + Current monitoring and limiting.
+   + A microSD card.
+   + A connector for the cable into the containment unit.
+     
+   The containment unit controller is inside the liquid containment bags. It
+   communicates with the Spaceduino over the I2C protocol, which requires only
+   two data wires. The default containment unit controller has an IO expander
+   and a handful of power MOSFETs that can be used to drive valves or motors,
+   for example.
+
+   A 12-pin circular connector bridges the two boards. Only 5 of the 12 wires
+   are used in the default design, leaving 7 wires for you to customize for
+   application-specific purposes. See the application notes at the end of this
+   guide for customization examples, which involve changes to both the
+   SpaceDuino and the containment unit controller circuit boards.
+** Microcontroller
+   The Spaceduino is designed for the ATmega1284P microcontroller. We considered
+   many microcontrollers before settling on this one. Lower end AVR
+   microcontrollers, such as the ATmega328P used in the Arduino Uno, were ruled
+   out as not having enough flash or memory to support advanced peripherals that
+   some applications may demand. The more advanced SAMD21 core used in the
+   Arduino Zero was also ruled out because it is difficult to burn the
+   bootloader -- special hardware and software is required, and even then the
+   process is quite tedious. The ATmega1284P's bootloader can be burned
+   relatively easily, using just an existing Arduino and the Arduino IDE.
+** Firmware Framework
+   The framework consists of three components:
+   + Event Handler: Reads the data sent over the USB and provides a programmatic
+     interface. For example, you can write an ~onCoastBegin~ function that will
+     be called by the framework when microgravity begins, rather than having to
+     constantly monitor the serial port for a token indicating coast begin. The
+     event handler framework monitors all data sent over USB, such as
+     accelerometer data, and makes it available. You don't have to do any string
+     parsing!
+   + State Manager: The Nanolab documentation states that nanolabs may be power
+     cycled at any time for any reason. The state manager is a state machine
+     framework that robustly saves the current state to the SD card and restores
+     it during a power cycle. The state manager also is a valuable debugging
+     tool: All states are saved to the SD card, so you can see exactly what your
+     Spaceduino was thinking if something goes wrong.
+   + Logger: Every experiment requires data logging. A library is provided to
+     save experimental data to the SD card.
+* Assembly and Setup
+** KiCAD Setup
+   Install the latest version of KiCAD from the website.
+** Arduino IDE Setup
+   The Spaceduino uses the ATmega1284P microprocessor. This is similar, but
+   better, than the ATmega328P that's used in the popular Arduino Uno. What's of
+   interest to us is that the 1284 has four times as much flash memory, four
+   times as much RAM, and additional built-in peripherals (eg, multiple serial
+   ports). However, because it's not /quite/ the same as the 328, the Spaceduino
+   isn't a drop-in replacement for the Arduino Uno -- you have to make some small
+   changes to the Arduino IDE before you can start programming.
+
+   MightyCore is an open-source project to support the ATmega1284 in the Arduino
+   IDE. To use it, make sure you have a recent version of the Arduino IDE
+   installed, and go to File→Preferences and add
+   ~https://mcudude.github.io/MightyCore/package_MCUdude_MightyCore_index.json~
+   in the text box "Additional Boards Manager URLs". Close the window then select
+   Tools→Board→MightyCore→ATmega1284. Under Tools, ensure the following settings:
+   + Clock: External 12MHz
+   + BOD: Bod Disabled
+   + Compiler LTO: LTO Enabled
+   + Variant: 1284P
+   + Pinout: Standard pinout
+   + Bootloader: Yes (UART0)
+** One-time firmware setup: Burning the bootloader
+   This will only need to be done once for your Spaceduino. Once the bootloader
+   is burned, then the Spaceduino can be reprogrammed as many times as necessary
+   using just the USB port, like any other Arduino.
+  
+   The easiest way to burn the bootloader is using an existing Arduino, such as
+   the Uno. Plug the Arduino into your PC, and be sure to set the appropriate
+   board under Tools→Board. Go to File→Examples→ArduinoISP→ArduinoISP. Upload
+   this sketch to the board. Now your Arduino can act as a programmer for the
+   Spaceduino!
+
+   Connect the ICSP pins of the Arduino to the corresponding ICSP pins on the
+   Spaceduino, as indicated: TODO: image.
+
+   Next, change the board configuration to the ATmega1284 as described in the
+   "Software Setup" section. Additionally, set Tools→Programmer→"Arduino as ISP
+   (MightyCore)". Finally, click Tools→"Burn Bootloader". Make sure that no
+   errors occurred. Congratulations! Your Spaceduino is now an Arduino!
+* Firmware Framework API
+  The framework API is not documented here. Look in the ~examples~ folder of the
+  source code for tutorial-like guides, or in the separate PDF with a complete
+  reference.
+* Firmware Testing
+** Gooptest
+** Official Serial Simulator
+* Application Note: Piezoelectric Micropumps
+* Application Note: Simpler Spaceduino
+  You may wish to omit the boost converter or the current monitoring and
+  limiting for certain designs. KiCAD files for this simplified design are
+  provided.
+* Application Note: Camera
+  A camera is one of the most complex peripherals you can attach to the
+  Spaceduino. We don't provide a reference implementation for a camera because
+  "camera" can mean so many different things:
+  + Most scientific experiments need special imaging devices, not general
+    purpose cameras.
+  + Different cameras have very different interfaces, ranging from 14-pin
+    parallel interfaces that require specialized hardware (most common for
+    high-resolution video cameras) to just I2C for the simplest cameras.
+  + Some applications need high frame-rate video, while others need only still
+    images.
+  This guide will go through the major steps of interfacing the general-purpose
+  uCAM-III camera with the Spaceduino. The uCAM-III is convenient because it has
+  a decent resolution, low cost, and a simple serial UART interface. The major
+  downside of the uCAM-III is that it takes up a substantial amount of space
+  inside the containment unit: It roughly occupies the space of a cube with 3
+  centimeter sides. Adding a camera is much simpler if your experiment does not
+  need containment.
+** Hardware
+   The uCAM will need two dedicated pins in the circular connector: One for
+   transmit, and one for receive.
+  
+   The uCAM has only five pins: Power, Ground, Reset, and the two data
+   connections. The reset pin can be connected to the I/O expander if you care to
+   use it.
+  
+   The uCAM does not sense infrared and thus requires active lighting. LEDs
+   located behind the camera are probably best, and can be driven using the motor
+   drivers on the containment board. If you need high power LEDs for some reason,
+   you may wish to use a switching LED driver, which will use less power than
+   simply putting a resistor in series with the LED.
+** Software
+   The ATmega1284 has an extra USART port that can be configured as UART serial
+   for communication with the uCAM. All of the following can continue
+   simultaneously:
+   + UART communication with the New Shepherd vehicle over USB.
+   + SPI communication with the SD card.
+   + I2C communication with the I/O expander and sensors.
+   + UART communication with the uCAM.
+   Well, in theory, that is. Can the software handle it? The answer is yes, if
+   you are careful.
+
+   The ATmega's hardware has very small buffers. For UART, there is a two-byte
+   hardware buffer: One byte is the last completely received byte, and the other
+   is the incomplete byte currently being received (there is no way to access
+   this incomplete byte from software). SPI and I2C have similarly small
+   hardware buffers. Arduino implements a larger serial UART buffer in software,
+   using interrupts -- while other code is running, if a byte is received over
+   serial, the hardware temporarily shifts control to an Arduino library
+   function which adds the byte to a software buffer, thus emptying the hardware
+   buffer, before seamlessly returning control back to whatever code was running
+   before the byte was received; it's completely transparent. SPI and I2C have
+   no such software buffering.
+
+   
+** Different types of cameras
+   Some cameras have specialized parallel interfaces that can require over a
+   dozen cables; if you must use such a camera, you will need to put a
+   microcontroller inside the containment unit that can temporarily store the
+   camera data and send it to the Spaceduino over a protocol that requires fewer
+   connectors. Some ARM microcontrollers have specialized hardware for talking
+   to these sorts of cameras at high data rates.
+   
+   I2C cameras are very convenient because they can be connected to the existing
+   I2C bus. Note that I2C cameras are usually not meant for imaging, but rather
+   for things like hand gesture detection or basic vision for robots. They are
+   usually low resolution and optimized for tasks such as finding the edges of
+   objects. However, a low resolution camera is sometimes worth it because of
+   how simple the software becomes.
+   
