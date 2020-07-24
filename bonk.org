@@ -90,6 +90,8 @@
    "Software Setup" section. Additionally, set Tools→Programmer→"Arduino as ISP
    (MightyCore)". Finally, click Tools→"Burn Bootloader". Make sure that no
    errors occurred. Congratulations! Your Spaceduino is now an Arduino!
+*** Optional: Set BOD fuses
+    The EEPROM can be corrupted if it is operated at really low voltage. This can happen if, for example, the EEPROM is being written and suddenly the supply voltage drops out. An EEPROM write can take as long as 3.4 milliseconds, so this is a serious concern. To minimize the chance of this, set the BOD fuses to just below 5V TODO.
 * Firmware Framework API
   The framework API is not documented here. Look in the ~examples~ folder of the
   source code for tutorial-like guides, or in the separate PDF with a complete
