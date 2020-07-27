@@ -374,10 +374,10 @@ F 3 "" H 7100 950 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Connector:Micro_SD_Card_Det J2
+L Connector:Micro_SD_Card_Det MICROSD1
 U 1 1 5EFE706C
 P 9600 1650
-F 0 "J2" H 9550 2467 50  0000 C CNN
+F 0 "MICROSD1" H 9550 2467 50  0000 C CNN
 F 1 "Micro_SD_Card_Det" H 9550 2376 50  0000 C CNN
 F 2 "Connector_Card:microSD_HC_Hirose_DM3D-SF" H 11650 2350 50  0001 C CNN
 F 3 "https://www.hirose.com/product/en/download_file/key_name/DM3/category/Catalog/doc_file_id/49662/?file_category_id=4&item_id=195&is_series=1" H 9600 1750 50  0001 C CNN
@@ -453,12 +453,12 @@ Cannot be used as 3V3 for\nSD card because Ft230 only\nallows 50mA from this por
 $Comp
 L power:GND #PWR031
 U 1 1 5EFF6A33
-P 9550 3750
-F 0 "#PWR031" H 9550 3500 50  0001 C CNN
-F 1 "GND" H 9555 3577 50  0000 C CNN
-F 2 "" H 9550 3750 50  0001 C CNN
-F 3 "" H 9550 3750 50  0001 C CNN
-	1    9550 3750
+P 9550 3350
+F 0 "#PWR031" H 9550 3100 50  0001 C CNN
+F 1 "GND" H 9555 3177 50  0000 C CNN
+F 2 "" H 9550 3350 50  0001 C CNN
+F 3 "" H 9550 3350 50  0001 C CNN
+	1    9550 3350
 	0    1    1    0   
 $EndComp
 $Comp
@@ -472,9 +472,7 @@ F 3 "" H 7200 2350 50  0001 C CNN
 	1    7200 2350
 	1    0    0    -1  
 $EndComp
-Text GLabel 9550 3350 0    39   Input ~ 0
-i2c_sda
-Text GLabel 9550 3450 0    39   Input ~ 0
+Text GLabel 9550 3650 0    39   Input ~ 0
 i2c_scl
 Text GLabel 4750 5750 2    39   Input ~ 0
 spi_mosi
@@ -527,7 +525,7 @@ Text GLabel 6300 4050 2    50   Input ~ 0
 Text GLabel 6300 4150 2    50   Input ~ 0
 1
 Text GLabel 6300 4250 2    50   Input ~ 0
-2
+2_boost_en
 Text GLabel 6300 4350 2    50   Input ~ 0
 3
 Text GLabel 6300 4450 2    50   Input ~ 0
@@ -1291,7 +1289,7 @@ Wire Wire Line
 Wire Wire Line
 	1100 4150 850  4150
 Text GLabel 1000 4150 3    50   Input ~ 0
-boost_en
+2_boost_en
 $Comp
 L Transistor_FET:BSS84 Q1
 U 1 1 5F288EBA
@@ -1367,7 +1365,7 @@ U 1 1 5F19770A
 P 6000 7400
 F 0 "H4" H 6100 7403 50  0000 L CNN
 F 1 "MountingHole_Pad" H 5900 7448 50  0001 R CNN
-F 2 "MountingHole:MountingHole_2.7mm_Pad" H 6000 7400 50  0001 C CNN
+F 2 "MountingHole:MountingHole_2.2mm_M2_Pad" H 6000 7400 50  0001 C CNN
 F 3 "~" H 6000 7400 50  0001 C CNN
 	1    6000 7400
 	1    0    0    -1  
@@ -1378,7 +1376,7 @@ U 1 1 5F19813B
 P 5750 7400
 F 0 "H3" H 5850 7403 50  0000 L CNN
 F 1 "MountingHole_Pad" H 5650 7448 50  0001 R CNN
-F 2 "MountingHole:MountingHole_2.7mm_Pad" H 5750 7400 50  0001 C CNN
+F 2 "MountingHole:MountingHole_2.2mm_M2_Pad" H 5750 7400 50  0001 C CNN
 F 3 "~" H 5750 7400 50  0001 C CNN
 	1    5750 7400
 	1    0    0    -1  
@@ -1389,7 +1387,7 @@ U 1 1 5F198338
 P 5500 7400
 F 0 "H2" H 5600 7403 50  0000 L CNN
 F 1 "MountingHole_Pad" H 5400 7448 50  0001 R CNN
-F 2 "MountingHole:MountingHole_2.7mm_Pad" H 5500 7400 50  0001 C CNN
+F 2 "MountingHole:MountingHole_2.2mm_M2_Pad" H 5500 7400 50  0001 C CNN
 F 3 "~" H 5500 7400 50  0001 C CNN
 	1    5500 7400
 	1    0    0    -1  
@@ -1400,7 +1398,7 @@ U 1 1 5F19854D
 P 5250 7400
 F 0 "H1" H 5350 7403 50  0000 L CNN
 F 1 "MountingHole_Pad" H 5150 7448 50  0001 R CNN
-F 2 "MountingHole:MountingHole_2.7mm_Pad" H 5250 7400 50  0001 C CNN
+F 2 "MountingHole:MountingHole_2.2mm_M2_Pad" H 5250 7400 50  0001 C CNN
 F 3 "~" H 5250 7400 50  0001 C CNN
 	1    5250 7400
 	1    0    0    -1  
@@ -1601,8 +1599,6 @@ F 3 "http://www.ti.com/lit/ds/symlink/ina226.pdf" H 9000 5600 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	8250 5800 7600 5800
-Wire Wire Line
-	7600 5800 7600 4850
 Connection ~ 7600 4850
 Wire Wire Line
 	7600 4850 7700 4850
@@ -1660,60 +1656,10 @@ $EndComp
 Wire Wire Line
 	8250 5800 8250 5400
 Connection ~ 8250 5800
-$Comp
-L power:+5V #PWR045
-U 1 1 5F1F012D
-P 8650 5200
-F 0 "#PWR045" H 8650 5050 50  0001 C CNN
-F 1 "+5V" H 8665 5373 50  0000 C CNN
-F 2 "" H 8650 5200 50  0001 C CNN
-F 3 "" H 8650 5200 50  0001 C CNN
-	1    8650 5200
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR056
-U 1 1 5F213441
-P 10350 6300
-F 0 "#PWR056" H 10350 6050 50  0001 C CNN
-F 1 "GND" H 10355 6127 50  0000 C CNN
-F 2 "" H 10350 6300 50  0001 C CNN
-F 3 "" H 10350 6300 50  0001 C CNN
-	1    10350 6300
-	1    0    0    -1  
-$EndComp
-Text GLabel 9100 6000 3    50   Input ~ 0
-current_trip_fast
-Text GLabel 2200 5700 3    50   Input ~ 0
-current_trip_fast
-$Comp
-L Device:R R17
-U 1 1 5F2456D3
-P 10350 5700
-F 0 "R17" H 10420 5746 50  0000 L CNN
-F 1 "10k" H 10420 5655 50  0000 L CNN
-F 2 "Resistor_SMD:R_1206_3216Metric" V 10280 5700 50  0001 C CNN
-F 3 "~" H 10350 5700 50  0001 C CNN
-	1    10350 5700
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+5V #PWR048
-U 1 1 5F24CFF7
-P 10350 5550
-F 0 "#PWR048" H 10350 5400 50  0001 C CNN
-F 1 "+5V" H 10365 5723 50  0000 C CNN
-F 2 "" H 10350 5550 50  0001 C CNN
-F 3 "" H 10350 5550 50  0001 C CNN
-	1    10350 5550
-	1    0    0    -1  
-$EndComp
+Text GLabel 2500 5900 2    50   Input ~ 0
+current_trip
 Wire Wire Line
-	10550 6000 10350 6000
-Wire Wire Line
-	10850 5800 10850 4650
-Wire Wire Line
-	10850 4650 8800 4650
+	9850 4650 9450 4650
 $Comp
 L Analog_ADC:INA226 U5
 U 1 1 5F26F17E
@@ -1807,24 +1753,23 @@ Wire Wire Line
 $Comp
 L Device:R R10
 U 1 1 5F2E7DDA
-P 10850 4500
-F 0 "R10" H 10920 4546 50  0000 L CNN
-F 1 "10k" H 10920 4455 50  0000 L CNN
-F 2 "Resistor_SMD:R_1206_3216Metric" V 10780 4500 50  0001 C CNN
-F 3 "~" H 10850 4500 50  0001 C CNN
-	1    10850 4500
+P 9450 4500
+F 0 "R10" H 9520 4546 50  0000 L CNN
+F 1 "36k" H 9520 4455 50  0000 L CNN
+F 2 "Resistor_SMD:R_1206_3216Metric" V 9380 4500 50  0001 C CNN
+F 3 "~" H 9450 4500 50  0001 C CNN
+	1    9450 4500
 	1    0    0    -1  
 $EndComp
-Connection ~ 10850 4650
 $Comp
 L power:+5V #PWR036
 U 1 1 5F2E8D07
-P 10850 4350
-F 0 "#PWR036" H 10850 4200 50  0001 C CNN
-F 1 "+5V" H 10865 4523 50  0000 C CNN
-F 2 "" H 10850 4350 50  0001 C CNN
-F 3 "" H 10850 4350 50  0001 C CNN
-	1    10850 4350
+P 9450 4350
+F 0 "#PWR036" H 9450 4200 50  0001 C CNN
+F 1 "+5V" H 9465 4523 50  0000 C CNN
+F 2 "" H 9450 4350 50  0001 C CNN
+F 3 "" H 9450 4350 50  0001 C CNN
+	1    9450 4350
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -1864,12 +1809,12 @@ Text Notes 4850 2950 0    39   ~ 0
 $Comp
 L Device:R R20
 U 1 1 5F18D89A
-P 10050 6000
-F 0 "R20" H 10120 6046 50  0000 L CNN
-F 1 "470" H 10120 5955 50  0000 L CNN
-F 2 "Resistor_SMD:R_1206_3216Metric" V 9980 6000 50  0001 C CNN
-F 3 "~" H 10050 6000 50  0001 C CNN
-	1    10050 6000
+P 9450 6000
+F 0 "R20" H 9520 6046 50  0000 L CNN
+F 1 "470" H 9520 5955 50  0000 L CNN
+F 2 "Resistor_SMD:R_1206_3216Metric" V 9380 6000 50  0001 C CNN
+F 3 "~" H 9450 6000 50  0001 C CNN
+	1    9450 6000
 	0    1    1    0   
 $EndComp
 $Comp
@@ -1886,12 +1831,6 @@ $EndComp
 Wire Wire Line
 	8800 4650 8800 4300
 Connection ~ 8800 4300
-Wire Wire Line
-	9000 3550 9550 3550
-Wire Wire Line
-	9150 3950 9150 3650
-Wire Wire Line
-	9150 3650 9550 3650
 Text GLabel 1800 5100 1    50   Input ~ 0
 3
 $Comp
@@ -1905,55 +1844,223 @@ F 3 "~" H 10800 800 50  0001 C CNN
 	1    10800 800 
 	1    0    0    -1  
 $EndComp
+Wire Wire Line
+	9050 6000 9300 6000
 $Comp
-L Connector_Generic:Conn_02x05_Odd_Even J?
+L power:PWR_FLAG #FLG0101
+U 1 1 5F2491DC
+P 8300 4850
+F 0 "#FLG0101" H 8300 4925 50  0001 C CNN
+F 1 "PWR_FLAG" H 8300 5023 50  0000 C CNN
+F 2 "" H 8300 4850 50  0001 C CNN
+F 3 "~" H 8300 4850 50  0001 C CNN
+	1    8300 4850
+	-1   0    0    1   
+$EndComp
+Connection ~ 8300 4850
+NoConn ~ 10050 3350
+NoConn ~ 10050 3450
+NoConn ~ 10050 3550
+NoConn ~ 10050 3650
+NoConn ~ 10050 3750
+$Comp
+L Connector_Generic:Conn_02x05_Odd_Even J4
 U 1 1 5F1BDC96
-P 9750 3550
-F 0 "J?" H 9800 3967 50  0000 C CNN
-F 1 "Conn_02x05_Odd_Even" H 9800 3876 50  0000 C CNN
-F 2 "" H 9750 3550 50  0001 C CNN
-F 3 "~" H 9750 3550 50  0001 C CNN
-	1    9750 3550
+P 9850 3550
+F 0 "J4" H 9900 3125 50  0000 C CNN
+F 1 "Conn_02x05_Odd_Even" H 9900 3216 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x05_P2.54mm_Vertical" H 9850 3550 50  0001 C CNN
+F 3 "~" H 9850 3550 50  0001 C CNN
+	1    9850 3550
+	-1   0    0    1   
+$EndComp
+Text GLabel 9550 3750 0    39   Input ~ 0
+i2c_sda
+Wire Wire Line
+	9000 3550 9000 3450
+Wire Wire Line
+	9000 3450 9550 3450
+Wire Wire Line
+	9150 3950 9150 3550
+Wire Wire Line
+	9150 3550 9550 3550
+$Comp
+L power:+5V #PWR0101
+U 1 1 5F1BECD2
+P 750 6850
+F 0 "#PWR0101" H 750 6700 50  0001 C CNN
+F 1 "+5V" H 765 7023 50  0000 C CNN
+F 2 "" H 750 6850 50  0001 C CNN
+F 3 "" H 750 6850 50  0001 C CNN
+	1    750  6850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C9
+U 1 1 5F1BFAE6
+P 750 7100
+F 0 "C9" H 865 7146 50  0000 L CNN
+F 1 ".1uF" H 865 7055 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 788 6950 50  0001 C CNN
+F 3 "~" H 750 7100 50  0001 C CNN
+	1    750  7100
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	10350 6000 10200 6000
-Connection ~ 10350 6000
+	750  6850 750  6950
+Connection ~ 750  6950
 Wire Wire Line
-	10350 5850 10350 6000
+	1550 7250 1550 7350
 $Comp
-L power:GND #PWR055
-U 1 1 5F256E38
-P 10850 6200
-F 0 "#PWR055" H 10850 5950 50  0001 C CNN
-F 1 "GND" H 10855 6027 50  0000 C CNN
-F 2 "" H 10850 6200 50  0001 C CNN
-F 3 "" H 10850 6200 50  0001 C CNN
-	1    10850 6200
+L power:GND #PWR0102
+U 1 1 5F1DA7CA
+P 1550 7350
+F 0 "#PWR0102" H 1550 7100 50  0001 C CNN
+F 1 "GND" H 1555 7177 50  0000 C CNN
+F 2 "" H 1550 7350 50  0001 C CNN
+F 3 "" H 1550 7350 50  0001 C CNN
+	1    1550 7350
+	1    0    0    -1  
+$EndComp
+Text GLabel 7700 3050 0    50   Input ~ 0
+i2c_scl
+Wire Wire Line
+	7700 3050 7850 3050
+Wire Wire Line
+	7850 3050 7850 2950
+$Comp
+L Device:R R17
+U 1 1 5F2124B5
+P 7850 2800
+F 0 "R17" H 7920 2846 50  0000 L CNN
+F 1 "3.3k" H 7920 2755 50  0000 L CNN
+F 2 "Resistor_SMD:R_1206_3216Metric" V 7780 2800 50  0001 C CNN
+F 3 "~" H 7850 2800 50  0001 C CNN
+	1    7850 2800
 	1    0    0    -1  
 $EndComp
 $Comp
-L Transistor_BJT:PZT3904 Q?
-U 1 1 5F1EBF10
-P 10750 6000
-F 0 "Q?" H 10940 6046 50  0000 L CNN
-F 1 "PZT3904" H 10940 5955 50  0000 L CNN
-F 2 "Package_TO_SOT_SMD:SOT-223-3_TabPin2" H 10950 5925 50  0001 L CIN
-F 3 "https://www.fairchildsemi.com/datasheets/2N/2N3904.pdf" H 10750 6000 50  0001 L CNN
-	1    10750 6000
+L power:+5V #PWR0103
+U 1 1 5F213383
+P 7850 2650
+F 0 "#PWR0103" H 7850 2500 50  0001 C CNN
+F 1 "+5V" H 7865 2823 50  0000 C CNN
+F 2 "" H 7850 2650 50  0001 C CNN
+F 3 "" H 7850 2650 50  0001 C CNN
+	1    7850 2650
+	1    0    0    -1  
+$EndComp
+Text GLabel 8350 3050 0    50   Input ~ 0
+i2c_sda
+Wire Wire Line
+	8350 3050 8500 3050
+Wire Wire Line
+	8500 3050 8500 2950
+$Comp
+L Device:R R18
+U 1 1 5F21D6B2
+P 8500 2800
+F 0 "R18" H 8570 2846 50  0000 L CNN
+F 1 "3.3k" H 8570 2755 50  0000 L CNN
+F 2 "Resistor_SMD:R_1206_3216Metric" V 8430 2800 50  0001 C CNN
+F 3 "~" H 8500 2800 50  0001 C CNN
+	1    8500 2800
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR0104
+U 1 1 5F21D6B8
+P 8500 2650
+F 0 "#PWR0104" H 8500 2500 50  0001 C CNN
+F 1 "+5V" H 8515 2823 50  0000 C CNN
+F 2 "" H 8500 2650 50  0001 C CNN
+F 3 "" H 8500 2650 50  0001 C CNN
+	1    8500 2650
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR056
+U 1 1 5F213441
+P 9850 6300
+F 0 "#PWR056" H 9850 6050 50  0001 C CNN
+F 1 "GND" H 9855 6127 50  0000 C CNN
+F 2 "" H 9850 6300 50  0001 C CNN
+F 3 "" H 9850 6300 50  0001 C CNN
+	1    9850 6300
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:C C18
 U 1 1 5F203B58
-P 10350 6150
-F 0 "C18" H 10465 6196 50  0000 L CNN
-F 1 "10uF" H 10465 6105 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 10388 6000 50  0001 C CNN
-F 3 "~" H 10350 6150 50  0001 C CNN
-	1    10350 6150
+P 9850 6150
+F 0 "C18" H 9965 6196 50  0000 L CNN
+F 1 "10uF" H 9965 6105 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 9888 6000 50  0001 C CNN
+F 3 "~" H 9850 6150 50  0001 C CNN
+	1    9850 6150
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	9050 6000 9900 6000
+	9850 4650 9850 6000
+Text GLabel 9850 4950 0    50   Input ~ 0
+current_trip
+$Comp
+L power:GND #PWR0105
+U 1 1 5F2F2AE3
+P 2200 6100
+F 0 "#PWR0105" H 2200 5850 50  0001 C CNN
+F 1 "GND" H 2205 5927 50  0000 C CNN
+F 2 "" H 2200 6100 50  0001 C CNN
+F 3 "" H 2200 6100 50  0001 C CNN
+	1    2200 6100
+	1    0    0    -1  
+$EndComp
+Connection ~ 9850 6000
+Wire Wire Line
+	9850 6000 9600 6000
+Connection ~ 9450 4650
+Wire Wire Line
+	9450 4650 8800 4650
+$Comp
+L Transistor_FET:2N7002 Q3
+U 1 1 5F32572F
+P 2300 5900
+F 0 "Q3" H 2505 5946 50  0000 L CNN
+F 1 "2N7002" H 2505 5855 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 2500 5825 50  0001 L CIN
+F 3 "https://www.fairchildsemi.com/datasheets/2N/2N7002.pdf" H 2300 5900 50  0001 L CNN
+	1    2300 5900
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	1150 7250 1550 7250
+Wire Wire Line
+	750  7250 1150 7250
+Connection ~ 1150 7250
+Wire Wire Line
+	750  6950 1150 6950
+$Comp
+L Device:C C19
+U 1 1 5F1BFE28
+P 1150 7100
+F 0 "C19" H 1265 7146 50  0000 L CNN
+F 1 ".1uF" H 1265 7055 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 1188 6950 50  0001 C CNN
+F 3 "~" H 1150 7100 50  0001 C CNN
+	1    1150 7100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7600 5800 7600 4850
+$Comp
+L power:+5V #PWR045
+U 1 1 5F1F012D
+P 8650 5200
+F 0 "#PWR045" H 8650 5050 50  0001 C CNN
+F 1 "+5V" H 8665 5373 50  0000 C CNN
+F 2 "" H 8650 5200 50  0001 C CNN
+F 3 "" H 8650 5200 50  0001 C CNN
+	1    8650 5200
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
