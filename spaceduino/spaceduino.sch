@@ -474,8 +474,6 @@ F 3 "" H 7200 2350 50  0001 C CNN
 $EndComp
 Text GLabel 9550 3650 0    39   Input ~ 0
 i2c_scl
-Text GLabel 4750 5750 2    39   Input ~ 0
-5_spi_mosi
 Text GLabel 4250 5650 0    39   Input ~ 0
 6_spi_miso
 Text GLabel 4250 5750 0    39   Input ~ 0
@@ -2004,7 +2002,7 @@ F 1 "BSS84" H 10254 5105 50  0000 L CNN
 F 2 "Package_TO_SOT_SMD:SOT-23" H 10250 5075 50  0001 L CIN
 F 3 "http://assets.nexperia.com/documents/data-sheet/BSS84.pdf" H 10050 5150 50  0001 L CNN
 	1    10050 5150
-	1    0    0    -1  
+	1    0    0    1   
 $EndComp
 Wire Wire Line
 	10150 5700 10150 5800
@@ -2117,4 +2115,6 @@ F 3 "" H 6650 1000 50  0001 C CNN
 	1    6650 1000
 	1    0    0    -1  
 $EndComp
+Text GLabel 4750 5750 2    39   Input ~ 0
+5_spi_mosi
 $EndSCHEMATC
