@@ -441,11 +441,11 @@ F 3 "" H 10500 2250 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Text GLabel 6800 1350 0    50   Input ~ 0
-spi_miso
+6_spi_miso
 Text GLabel 6800 1550 0    50   Input ~ 0
-spi_sck
+7_spi_sck
 Text GLabel 6800 1750 0    50   Input ~ 0
-spi_mosi
+5_spi_mosi
 Text GLabel 6800 1950 0    50   Input ~ 0
 4_sd_ss
 Text Notes 1300 700  0    39   ~ 0
@@ -475,19 +475,19 @@ $EndComp
 Text GLabel 9550 3650 0    39   Input ~ 0
 i2c_scl
 Text GLabel 4750 5750 2    39   Input ~ 0
-spi_mosi
+5_spi_mosi
 Text GLabel 4250 5650 0    39   Input ~ 0
-spi_miso
+6_spi_miso
 Text GLabel 4250 5750 0    39   Input ~ 0
-spi_sck
+7_spi_sck
 Text GLabel 4250 5850 0    39   Input ~ 0
 ~reset
 Text GLabel 6300 4550 2    39   Input ~ 0
-spi_mosi
+5_spi_mosi
 Text GLabel 6300 4650 2    39   Input ~ 0
-spi_miso
+6_spi_miso
 Text GLabel 6300 4750 2    39   Input ~ 0
-spi_sck
+7_spi_sck
 Wire Wire Line
 	7650 950  7300 950 
 Text Notes 7500 900  0    39   ~ 0
@@ -2082,6 +2082,39 @@ F 1 "+5V" H 9865 4923 50  0000 C CNN
 F 2 "" H 9850 4750 50  0001 C CNN
 F 3 "" H 9850 4750 50  0001 C CNN
 	1    9850 4750
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3V0 #PWR0109
+U 1 1 5F37D0F6
+P 6650 700
+F 0 "#PWR0109" H 6650 550 50  0001 C CNN
+F 1 "+3V0" H 6665 873 50  0000 C CNN
+F 2 "" H 6650 700 50  0001 C CNN
+F 3 "" H 6650 700 50  0001 C CNN
+	1    6650 700 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C20
+U 1 1 5F37E1E3
+P 6650 850
+F 0 "C20" H 6765 896 50  0000 L CNN
+F 1 ".1uF" H 6765 805 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 6688 700 50  0001 C CNN
+F 3 "~" H 6650 850 50  0001 C CNN
+	1    6650 850 
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0110
+U 1 1 5F392DCB
+P 6650 1000
+F 0 "#PWR0110" H 6650 750 50  0001 C CNN
+F 1 "GND" H 6655 827 50  0000 C CNN
+F 2 "" H 6650 1000 50  0001 C CNN
+F 3 "" H 6650 1000 50  0001 C CNN
+	1    6650 1000
 	1    0    0    -1  
 $EndComp
 $EndSCHEMATC
