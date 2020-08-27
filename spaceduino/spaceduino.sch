@@ -64,17 +64,6 @@ $EndComp
 Wire Wire Line
 	6050 2200 5950 2200
 $Comp
-L Device:C C8
-U 1 1 5EFBEB67
-P 6050 2350
-F 0 "C8" H 6165 2396 50  0000 L CNN
-F 1 "10uF" H 6165 2305 50  0000 L CNN
-F 2 "Capacitor_SMD:C_1206_3216Metric" H 6088 2200 50  0001 C CNN
-F 3 "~" H 6050 2350 50  0001 C CNN
-	1    6050 2350
-	1    0    0    -1  
-$EndComp
-$Comp
 L power:GND #PWR022
 U 1 1 5EFBF1F6
 P 6050 2500
@@ -976,12 +965,12 @@ $EndComp
 $Comp
 L Device:L L2
 U 1 1 5F0C1462
-P 1400 3300
-F 0 "L2" V 1219 3300 50  0000 C CNN
-F 1 "10uH" V 1310 3300 50  0000 C CNN
-F 2 "Inductor_SMD:L_1210_3225Metric" H 1400 3300 50  0001 C CNN
-F 3 "~" H 1400 3300 50  0001 C CNN
-	1    1400 3300
+P 1500 3300
+F 0 "L2" V 1319 3300 50  0000 C CNN
+F 1 "10uH" V 1410 3300 50  0000 C CNN
+F 2 "Inductor_SMD:L_1210_3225Metric" H 1500 3300 50  0001 C CNN
+F 3 "~" H 1500 3300 50  0001 C CNN
+	1    1500 3300
 	0    1    1    0   
 $EndComp
 $Comp
@@ -996,7 +985,7 @@ F 3 "~" H 2000 3300 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	1550 3300 1800 3300
+	1650 3300 1800 3300
 Wire Wire Line
 	1700 3850 1800 3850
 Wire Wire Line
@@ -1086,8 +1075,6 @@ F 3 "" H 2750 4500 50  0001 C CNN
 	1    2750 4500
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	850  3300 1250 3300
 Wire Wire Line
 	1100 3850 850  3850
 Wire Wire Line
@@ -2117,4 +2104,30 @@ F 3 "" H 6650 1000 50  0001 C CNN
 $EndComp
 Text GLabel 4750 5750 2    39   Input ~ 0
 5_spi_mosi
+$Comp
+L Device:C C8
+U 1 1 5EFBEB67
+P 6050 2350
+F 0 "C8" H 6165 2396 50  0000 L CNN
+F 1 ".1uF" H 6165 2305 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric" H 6088 2200 50  0001 C CNN
+F 3 "~" H 6050 2350 50  0001 C CNN
+	1    6050 2350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:L L?
+U 1 1 5F494F30
+P 1150 3300
+F 0 "L?" V 969 3300 50  0000 C CNN
+F 1 "10uH" V 1060 3300 50  0000 C CNN
+F 2 "Inductor_SMD:L_1210_3225Metric" H 1150 3300 50  0001 C CNN
+F 3 "~" H 1150 3300 50  0001 C CNN
+	1    1150 3300
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1300 3300 1350 3300
+Wire Wire Line
+	1000 3300 850  3300
 $EndSCHEMATC
