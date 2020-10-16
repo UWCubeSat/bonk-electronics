@@ -1,0 +1,10 @@
+* Minor
+  + Update C8 to .1uF on spaceduino-dummy-experiment
+  + Choose smaller connectors for inter-boards
+  + Chamfer Edges
+  + Serial inductors
+* Medium
+  + Move parts away from holes on containment board (.25in diameter)
+  + Move connectors inwards to allow for horizontal headers (containment board)
+  + Fix boost LED
+  + Bulk Capacitors
