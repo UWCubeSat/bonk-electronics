@@ -2,9 +2,14 @@
   + Update C8 to .1uF on spaceduino-dummy-experiment
   + Choose smaller connectors for inter-boards
   + Chamfer Edges
-  + Serial inductors
+  + Larger Boost inductor
+  + Consistent capacitor footprint sizes
+  + Indicate IDC polarity on silkscreen
+  + FET pullups during startup (and maybe boost conv en. pulldown?)
 * Medium
   + Move parts away from holes on containment board (.25in diameter)
   + Move connectors inwards to allow for horizontal headers (containment board)
   + Fix boost LED
-  + Bulk Capacitors
+  + Bulk Capacitors (esp. at boost input)
+  + Better grounding on inner board
+  + Flip inner board connector
