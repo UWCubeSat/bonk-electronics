@@ -1,0 +1,9 @@
+* make sure all 10uF pads are 1206
+* Put larger capacitance at boost converter input
+* Pulldown resistor on boost enable for startup
+* Better indicatio of IDC polarity on silkscreen
+* Pullups for containmet FETs (during startup)
+* Larger Boost Inductor
+* Containment Board Better Grounding
+* Flip containment board connector
+* Boost converter LED problem
